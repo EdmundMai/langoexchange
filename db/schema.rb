@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204154748) do
+ActiveRecord::Schema.define(:version => 20121204175134) do
+
+  create_table "locations", :force => true do |t|
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "messages", :force => true do |t|
     t.string   "content"
@@ -26,8 +33,11 @@ ActiveRecord::Schema.define(:version => 20121204154748) do
     t.string   "name"
     t.integer  "age"
     t.string   "gender"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "remember_token"
+    t.integer  "location_id"
+    t.integer  "language_id"
   end
 
 end

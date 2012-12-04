@@ -3,8 +3,8 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   test "user is created" do
   	user = User.create(:name => "Edmund", :age => 3, :gender => "m")
-    assert_equal user, User.find_by_name("Edmund")
-    assert_equal 3, User.count
+  	assert_instance_of User, user
+    assert user.valid?
   end
 
   test "user has sent messages" do
@@ -22,6 +22,20 @@ class UserTest < ActiveSupport::TestCase
   	end
   	assert_equal 2, user.received_messages.count
   end
+
+  test "on user creation, a remember token is created" do
+  	user = User.create(:name => "Edmund", :age => 3, :gender => "m")
+  	assert_not_nil user.remember_token
+  end
+
+  test "user has spoken language" do
+  	user = User.create(:name => "Edmund", :age => 3, :gender => "m")
+  end
+
+  # test "user belongs to a location" do
+  # 	user = User.create(:name => "Edmund", :age => 3, :gender => "m")
+  # 	user.location.create(:city => "NY", :country => "United States of America")
+  # end
 
 
 end
